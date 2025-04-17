@@ -31,6 +31,7 @@ jobs:
         with:
           context: .
           file: ./server/Dockerfile
+          target: build
           load: true
 
       - name: Build and push
@@ -40,5 +41,5 @@ jobs:
           file: ./server/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          target: prod
+          target: final
           tags: ${{ vars.DOCKER_USERNAME }}/${{ github.event.repository.name }}:latest

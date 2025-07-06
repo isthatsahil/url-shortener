@@ -1,7 +1,7 @@
 import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
   {
@@ -13,6 +13,15 @@ export default defineConfig([
     files: ['**/*.{js,mjs,cjs,ts}'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } }
   },
-  globalIgnores(['**/node_modules/', '**/generated/prisma/', '**/prisma/']),
-  tseslint.configs.recommended
+  {
+    ignores: [
+      '**/node_modules/',
+      '**/generated/prisma/',
+      '**/prisma/',
+      '**/dist/',
+      '**/logs/',
+      '**/*.log'
+    ]
+  },
+  ...tseslint.configs.recommended
 ])
